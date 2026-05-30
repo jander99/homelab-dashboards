@@ -3,9 +3,14 @@
   "title": "Homelab Overview",
   "schemaVersion": 41,
   "version": 1,
-  "time": {"from": "now-6h", "to": "now"},
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
   "timepicker": {},
-  "tags": ["homelab"],
+  "tags": [
+    "homelab"
+  ],
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -18,58 +23,46 @@
       "type": "row",
       "title": "Media Library",
       "collapsed": false,
-      "gridPos": {"x": 0, "y": 0, "w": 24, "h": 1},
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 1
+      },
       "panels": []
     },
     {
       "id": 2,
       "type": "stat",
       "title": "Sonarr Series",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 1, "w": 6, "h": 4},
-      "targets": [{"expr": "sonarr_series_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 3,
-      "type": "stat",
-      "title": "Episodes Downloaded",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 1, "w": 6, "h": 4},
-      "targets": [{"expr": "sonarr_episode_downloaded_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "gridPos": {
+        "x": 0,
+        "y": 1,
+        "w": 6,
+        "h": 4
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 4,
-      "type": "stat",
-      "title": "Episodes Missing",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 1, "w": 6, "h": 4},
-      "targets": [{"expr": "sonarr_episode_missing_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "targets": [
+        {
+          "expr": "sonarr_series_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -79,12 +72,134 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
+          "color": {
+            "mode": "thresholds"
+          },
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null},
-              {"color": "red", "value": 1}
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Episodes Downloaded",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 1,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sonarr_episode_downloaded_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Episodes Missing",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 1,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sonarr_episode_missing_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
             ]
           }
         },
@@ -95,71 +210,34 @@
       "id": 5,
       "type": "stat",
       "title": "Cutoff Unmet (TV)",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 1, "w": 6, "h": 4},
-      "targets": [{"expr": "sonarr_episode_cutoff_unmet_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 6,
-      "type": "stat",
-      "title": "Radarr Movies",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 5, "w": 6, "h": 4},
-      "targets": [{"expr": "radarr_movie_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "gridPos": {
+        "x": 18,
+        "y": 1,
+        "w": 6,
+        "h": 4
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 7,
-      "type": "stat",
-      "title": "Movies Downloaded",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 5, "w": 6, "h": 4},
-      "targets": [{"expr": "radarr_movie_downloaded_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "targets": [
+        {
+          "expr": "sonarr_episode_cutoff_unmet_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 8,
-      "type": "stat",
-      "title": "Movies Missing",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 5, "w": 6, "h": 4},
-      "targets": [{"expr": "radarr_movie_missing_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -169,12 +247,191 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
+          "color": {
+            "mode": "thresholds"
+          },
           "thresholds": {
             "mode": "absolute",
             "steps": [
-              {"color": "green", "value": null},
-              {"color": "red", "value": 1}
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Radarr Movies",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 5,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "radarr_movie_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "Movies Downloaded",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 5,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "radarr_movie_downloaded_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "stat",
+      "title": "Movies Missing",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 5,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "radarr_movie_missing_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
             ]
           }
         },
@@ -185,219 +442,34 @@
       "id": 9,
       "type": "stat",
       "title": "Cutoff Unmet (Movies)",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 5, "w": 6, "h": 4},
-      "targets": [{"expr": "radarr_movie_cutoff_unmet_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 10,
-      "type": "stat",
-      "title": "Sonarr Queue",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 9, "w": 12, "h": 4},
-      "targets": [{"expr": "sonarr_queue_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "gridPos": {
+        "x": 18,
+        "y": 5,
+        "w": 6,
+        "h": 4
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 11,
-      "type": "stat",
-      "title": "Radarr Queue",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 9, "w": 12, "h": 4},
-      "targets": [{"expr": "radarr_queue_total", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "targets": [
+        {
+          "expr": "radarr_movie_cutoff_unmet_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 12,
-      "type": "row",
-      "title": "Download Activity",
-      "collapsed": false,
-      "gridPos": {"x": 0, "y": 14, "w": 24, "h": 1},
-      "panels": []
-    },
-    {
-      "id": 13,
-      "type": "stat",
-      "title": "SABnzbd Speed",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 15, "w": 6, "h": 4},
-      "targets": [{"expr": "sabnzbd_speed_bps", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "Bps", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}, "noValue": "Idle"},
-        "overrides": []
-      }
-    },
-    {
-      "id": 14,
-      "type": "stat",
-      "title": "SABnzbd Queue",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 15, "w": 6, "h": 4},
-      "targets": [{"expr": "sabnzbd_queue_length", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 15,
-      "type": "stat",
-      "title": "SABnzbd Remaining",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 15, "w": 6, "h": 4},
-      "targets": [{"expr": "sabnzbd_remaining_bytes", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 16,
-      "type": "stat",
-      "title": "SABnzbd ETA",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 15, "w": 6, "h": 4},
-      "targets": [{"expr": "sabnzbd_time_estimate_seconds", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "s", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}, "noValue": "\u2014"},
-        "overrides": []
-      }
-    },
-    {
-      "id": 17,
-      "type": "stat",
-      "title": "qBT Active DL",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 19, "w": 6, "h": 4},
-      "targets": [{"expr": "sum(qbittorrent_torrents_count{status=~\"downloading|metaDL|forcedDL\"})", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 18,
-      "type": "stat",
-      "title": "qBT Speed",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 19, "w": 6, "h": 4},
-      "targets": [{"expr": "rate(qbittorrent_dl_info_data_total[5m])", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "Bps", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 19,
-      "type": "stat",
-      "title": "qBT DHT Nodes",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 19, "w": 6, "h": 4},
-      "targets": [{"expr": "qbittorrent_dht_nodes", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 20,
-      "type": "stat",
-      "title": "VPN Connected",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 19, "w": 6, "h": 4},
-      "targets": [{"expr": "gluetun_vpn_connected", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -407,15 +479,618 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 10,
+      "type": "stat",
+      "title": "Sonarr Queue",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sonarr_queue_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 11,
+      "type": "stat",
+      "title": "Radarr Queue",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 9,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "radarr_queue_total",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 12,
+      "type": "row",
+      "title": "Download Activity",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 13,
+      "type": "stat",
+      "title": "SABnzbd Speed",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 15,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sabnzbd_speed_bps",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "noValue": "Idle"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 14,
+      "type": "stat",
+      "title": "SABnzbd Queue",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 15,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sabnzbd_queue_length",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 15,
+      "type": "stat",
+      "title": "SABnzbd Remaining",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 15,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sabnzbd_remaining_bytes",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 16,
+      "type": "stat",
+      "title": "SABnzbd ETA",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 15,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sabnzbd_time_estimate_seconds",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "noValue": "\u2014"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 17,
+      "type": "stat",
+      "title": "qBT Active DL",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sum(qbittorrent_torrents_count{status=~\"downloading|metaDL|forcedDL\"})",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 18,
+      "type": "stat",
+      "title": "qBT Speed",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 19,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "rate(qbittorrent_dl_info_data_total[5m])",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 19,
+      "type": "stat",
+      "title": "qBT DHT Nodes",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 19,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "qbittorrent_dht_nodes",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 20,
+      "type": "stat",
+      "title": "VPN Connected",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 19,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "gluetun_vpn_connected",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "noValue": "No data",
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Connected", "color": "green", "index": 0},
-                "0": {"text": "Disconnected", "color": "red", "index": 1}
+                "1": {
+                  "text": "Connected",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Disconnected",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -428,32 +1103,99 @@
       "type": "row",
       "title": "Indexer Health",
       "collapsed": false,
-      "gridPos": {"x": 0, "y": 24, "w": 24, "h": 1},
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 24,
+        "h": 1
+      },
       "panels": []
     },
     {
       "id": 22,
       "type": "table",
       "title": "Prowlarr Indexers",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 25, "w": 24, "h": 8},
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 24,
+        "h": 8
+      },
       "targets": [
-        {"expr": "sum by(indexer) (prowlarr_indexer_queries_total)", "refId": "A", "legendFormat": "{{indexer}}", "datasource": {"uid": "prometheus", "type": "prometheus"}},
-        {"expr": "sum by(indexer) (prowlarr_indexer_grabs_total)", "refId": "B", "legendFormat": "{{indexer}}", "datasource": {"uid": "prometheus", "type": "prometheus"}},
-        {"expr": "sum by(indexer) (prowlarr_indexer_failed_queries_total)", "refId": "C", "legendFormat": "{{indexer}}", "datasource": {"uid": "prometheus", "type": "prometheus"}},
-        {"expr": "prowlarr_indexer_average_response_time_ms", "refId": "D", "legendFormat": "{{indexer}}", "datasource": {"uid": "prometheus", "type": "prometheus"}}
+        {
+          "expr": "sum by(indexer) (prowlarr_indexer_queries_total)",
+          "refId": "A",
+          "legendFormat": "{{indexer}}",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(indexer) (prowlarr_indexer_grabs_total)",
+          "refId": "B",
+          "legendFormat": "{{indexer}}",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        },
+        {
+          "expr": "sum by(indexer) (prowlarr_indexer_failed_queries_total)",
+          "refId": "C",
+          "legendFormat": "{{indexer}}",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        },
+        {
+          "expr": "prowlarr_indexer_average_response_time_ms",
+          "refId": "D",
+          "legendFormat": "{{indexer}}",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
       ],
-      "transformations": [{"id": "merge", "options": {}}],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        }
+      ],
       "options": {
-        "sortBy": [{"displayName": "Time", "desc": true}],
-        "footer": {"show": false}
+        "sortBy": [
+          {
+            "displayName": "Time",
+            "desc": true
+          }
+        ],
+        "footer": {
+          "show": false
+        }
       },
       "fieldConfig": {
-        "defaults": {"unit": "short"},
+        "defaults": {
+          "unit": "short"
+        },
         "overrides": [
           {
-            "matcher": {"id": "byName", "options": "D"},
-            "properties": [{"id": "unit", "value": "ms"}]
+            "matcher": {
+              "id": "byName",
+              "options": "D"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "ms"
+              }
+            ]
           }
         ]
       }
@@ -462,11 +1204,34 @@
       "id": 23,
       "type": "stat",
       "title": "Prowlarr Status",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 33, "w": 12, "h": 4},
-      "targets": [{"expr": "prowlarr_system_status", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 33,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "prowlarr_system_status",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -476,14 +1241,32 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -496,18 +1279,46 @@
       "type": "row",
       "title": "Storage",
       "collapsed": false,
-      "gridPos": {"x": 0, "y": 38, "w": 24, "h": 1},
+      "gridPos": {
+        "x": 0,
+        "y": 38,
+        "w": 24,
+        "h": 1
+      },
       "panels": []
     },
     {
       "id": 25,
       "type": "stat",
       "title": "Sonarr TV Free",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 39, "w": 12, "h": 4},
-      "targets": [{"expr": "sonarr_rootfolder_freespace_bytes{path=\"/data/media/tv\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 39,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sonarr_rootfolder_freespace_bytes{path=\"/data/media/tv\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -515,7 +1326,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -523,11 +1348,34 @@
       "id": 26,
       "type": "stat",
       "title": "Radarr Movies Free",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 39, "w": 12, "h": 4},
-      "targets": [{"expr": "radarr_rootfolder_freespace_bytes{path=\"/data/media/movies\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 39,
+        "w": 12,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "radarr_rootfolder_freespace_bytes{path=\"/data/media/movies\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -535,7 +1383,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -543,11 +1405,34 @@
       "id": 27,
       "type": "stat",
       "title": "K3s Disk Free",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 43, "w": 8, "h": 4},
-      "targets": [{"expr": "node_filesystem_avail_bytes{instance=\"192.168.1.128:9100\", mountpoint=\"/\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 43,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "node_filesystem_avail_bytes{instance=\"192.168.1.128:9100\", mountpoint=\"/\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -555,7 +1440,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -563,11 +1462,34 @@
       "id": 28,
       "type": "stat",
       "title": "NAS Total",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 8, "y": 43, "w": 8, "h": 4},
-      "targets": [{"expr": "node_filesystem_size_bytes{instance=\"192.168.1.20:9100\", mountpoint=\"/\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 43,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "node_filesystem_size_bytes{instance=\"192.168.1.20:9100\", mountpoint=\"/\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -575,7 +1497,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -583,11 +1519,34 @@
       "id": 29,
       "type": "stat",
       "title": "NAS Free",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 16, "y": 43, "w": 8, "h": 4},
-      "targets": [{"expr": "node_filesystem_avail_bytes{instance=\"192.168.1.20:9100\", mountpoint=\"/\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 43,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "node_filesystem_avail_bytes{instance=\"192.168.1.20:9100\", mountpoint=\"/\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -595,7 +1554,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -604,18 +1577,46 @@
       "type": "row",
       "title": "Infrastructure",
       "collapsed": false,
-      "gridPos": {"x": 0, "y": 48, "w": 24, "h": 1},
+      "gridPos": {
+        "x": 0,
+        "y": 48,
+        "w": 24,
+        "h": 1
+      },
       "panels": []
     },
     {
       "id": 31,
       "type": "stat",
       "title": "K3s CPU %",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 49, "w": 6, "h": 4},
-      "targets": [{"expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", instance=\"192.168.1.128:9100\"}[5m]))) * 100", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 49,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", instance=\"192.168.1.128:9100\"}[5m]))) * 100",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -623,7 +1624,22 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "percent", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}, "max": 100},
+        "defaults": {
+          "unit": "percent",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "max": 100
+        },
         "overrides": []
       }
     },
@@ -631,11 +1647,34 @@
       "id": 32,
       "type": "stat",
       "title": "K3s RAM Used",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 49, "w": 6, "h": 4},
-      "targets": [{"expr": "node_memory_MemTotal_bytes{instance=\"192.168.1.128:9100\"} - node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 49,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "node_memory_MemTotal_bytes{instance=\"192.168.1.128:9100\"} - node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -643,7 +1682,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -651,11 +1704,34 @@
       "id": 33,
       "type": "stat",
       "title": "NAS CPU %",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 49, "w": 6, "h": 4},
-      "targets": [{"expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", instance=\"192.168.1.20:9100\"}[5m]))) * 100", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 49,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", instance=\"192.168.1.20:9100\"}[5m]))) * 100",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -663,7 +1739,22 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "percent", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}, "max": 100},
+        "defaults": {
+          "unit": "percent",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "max": 100
+        },
         "overrides": []
       }
     },
@@ -671,11 +1762,34 @@
       "id": 34,
       "type": "stat",
       "title": "NAS RAM Used",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 49, "w": 6, "h": 4},
-      "targets": [{"expr": "node_memory_MemTotal_bytes{instance=\"192.168.1.20:9100\"} - node_memory_MemAvailable_bytes{instance=\"192.168.1.20:9100\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 49,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "node_memory_MemTotal_bytes{instance=\"192.168.1.20:9100\"} - node_memory_MemAvailable_bytes{instance=\"192.168.1.20:9100\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -683,7 +1797,21 @@
         "justifyMode": "auto"
       },
       "fieldConfig": {
-        "defaults": {"unit": "bytes", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
+        "defaults": {
+          "unit": "bytes",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
         "overrides": []
       }
     },
@@ -691,121 +1819,79 @@
       "id": 35,
       "type": "text",
       "title": "GPU Metrics",
-      "gridPos": {"x": 0, "y": 53, "w": 12, "h": 4},
-      "options": {"mode": "markdown", "content": "GPU metrics pending \u2014 see homelab issue #138 (DCGM Exporter for RTX 3070)"}
+      "gridPos": {
+        "x": 0,
+        "y": 53,
+        "w": 12,
+        "h": 4
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "GPU metrics pending \u2014 see homelab issue #138 (DCGM Exporter for RTX 3070)"
+      },
+      "datasource": null
     },
     {
       "id": 36,
       "type": "text",
       "title": "Tdarr Metrics",
-      "gridPos": {"x": 12, "y": 53, "w": 12, "h": 4},
-      "options": {"mode": "markdown", "content": "Tdarr transcode metrics pending \u2014 see homelab issue #139 (ServiceMonitor)"}
+      "gridPos": {
+        "x": 12,
+        "y": 53,
+        "w": 12,
+        "h": 4
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "Tdarr transcode metrics pending \u2014 see homelab issue #139 (ServiceMonitor)"
+      },
+      "datasource": null
     },
     {
       "id": 37,
       "type": "row",
       "title": "DNS",
       "collapsed": false,
-      "gridPos": {"x": 0, "y": 58, "w": 24, "h": 1},
+      "gridPos": {
+        "x": 0,
+        "y": 58,
+        "w": 24,
+        "h": 1
+      },
       "panels": []
     },
     {
       "id": 38,
       "type": "stat",
       "title": "DNS Queries Today",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 59, "w": 6, "h": 4},
-      "targets": [{"expr": "pihole_dns_queries_today", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 39,
-      "type": "stat",
-      "title": "Ads Blocked Today",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 59, "w": 6, "h": 4},
-      "targets": [{"expr": "pihole_ads_blocked_today", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
+      "gridPos": {
+        "x": 0,
+        "y": 59,
+        "w": 6,
+        "h": 4
       },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 40,
-      "type": "stat",
-      "title": "Block Rate",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 59, "w": 6, "h": 4},
-      "targets": [{"expr": "pihole_ads_percentage_today", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "targets": [
+        {
+          "expr": "pihole_dns_queries_today",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "percent", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 41,
-      "type": "stat",
-      "title": "Domains Blocked",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 59, "w": 6, "h": 4},
-      "targets": [{"expr": "pihole_domains_being_blocked", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
-        "orientation": "auto",
-        "textMode": "auto",
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto"
-      },
-      "fieldConfig": {
-        "defaults": {"unit": "short", "color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]}},
-        "overrides": []
-      }
-    },
-    {
-      "id": 42,
-      "type": "row",
-      "title": "Availability",
-      "collapsed": false,
-      "gridPos": {"x": 0, "y": 64, "w": 24, "h": 1},
-      "panels": []
-    },
-    {
-      "id": 43,
-      "type": "stat",
-      "title": "Portainer",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 65, "w": 6, "h": 4},
-      "targets": [{"expr": "probe_success{job=\"probe/monitoring/portainer\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
-      "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -815,15 +1901,274 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 39,
+      "type": "stat",
+      "title": "Ads Blocked Today",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 59,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "pihole_ads_blocked_today",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 40,
+      "type": "stat",
+      "title": "Block Rate",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 59,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "pihole_ads_percentage_today",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 41,
+      "type": "stat",
+      "title": "Domains Blocked",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 59,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "pihole_domains_being_blocked",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 42,
+      "type": "row",
+      "title": "Availability",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 64,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 43,
+      "type": "stat",
+      "title": "Portainer",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 65,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "probe_success{job=\"probe/monitoring/portainer\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "noValue": "No data",
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -835,11 +2180,34 @@
       "id": 44,
       "type": "stat",
       "title": "Headlamp",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 6, "y": 65, "w": 6, "h": 4},
-      "targets": [{"expr": "probe_success{job=\"probe/monitoring/headlamp\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 65,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "probe_success{job=\"probe/monitoring/headlamp\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -849,15 +2217,33 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "noValue": "No data",
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -869,11 +2255,34 @@
       "id": 45,
       "type": "stat",
       "title": "Authentik",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 12, "y": 65, "w": 6, "h": 4},
-      "targets": [{"expr": "probe_success{job=\"probe/monitoring/authentik\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 65,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "probe_success{job=\"probe/monitoring/authentik\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -883,15 +2292,33 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "noValue": "No data",
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -903,11 +2330,34 @@
       "id": 46,
       "type": "stat",
       "title": "Tdarr",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 18, "y": 65, "w": 6, "h": 4},
-      "targets": [{"expr": "probe_success{job=\"probe/monitoring/tdarr\"}", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 65,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "probe_success{job=\"probe/monitoring/tdarr\"}",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -917,15 +2367,33 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "noValue": "No data",
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -937,11 +2405,34 @@
       "id": 47,
       "type": "stat",
       "title": "Sonarr Status",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 0, "y": 69, "w": 8, "h": 4},
-      "targets": [{"expr": "sonarr_system_status", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 69,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "sonarr_system_status",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -951,14 +2442,32 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -970,11 +2479,34 @@
       "id": 48,
       "type": "stat",
       "title": "Radarr Status",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 8, "y": 69, "w": 8, "h": 4},
-      "targets": [{"expr": "radarr_system_status", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 69,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "radarr_system_status",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -984,14 +2516,32 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
@@ -1003,11 +2553,34 @@
       "id": 49,
       "type": "stat",
       "title": "Prowlarr Status",
-      "datasource": {"uid": "prometheus", "type": "prometheus"},
-      "gridPos": {"x": 16, "y": 69, "w": 8, "h": 4},
-      "targets": [{"expr": "prowlarr_system_status", "refId": "A", "datasource": {"uid": "prometheus", "type": "prometheus"}}],
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 69,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "expr": "prowlarr_system_status",
+          "refId": "A",
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          }
+        }
+      ],
       "options": {
-        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
         "orientation": "auto",
         "textMode": "auto",
         "colorMode": "background",
@@ -1017,14 +2590,32 @@
       "fieldConfig": {
         "defaults": {
           "unit": "short",
-          "color": {"mode": "thresholds"},
-          "thresholds": {"mode": "absolute", "steps": [{"color": "blue", "value": null}]},
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
           "mappings": [
             {
               "type": "value",
               "options": {
-                "1": {"text": "Up", "color": "green", "index": 0},
-                "0": {"text": "Down", "color": "red", "index": 1}
+                "1": {
+                  "text": "Up",
+                  "color": "green",
+                  "index": 0
+                },
+                "0": {
+                  "text": "Down",
+                  "color": "red",
+                  "index": 1
+                }
               }
             }
           ]
