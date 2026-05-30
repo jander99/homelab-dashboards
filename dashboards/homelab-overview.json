@@ -853,7 +853,7 @@
               }
             ]
           },
-          "noValue": "\u2014"
+          "noValue": "—"
         },
         "overrides": []
       }
@@ -968,7 +968,7 @@
               }
             ]
           },
-          "noValue": "\u2014"
+          "noValue": "—"
         },
         "overrides": []
       }
@@ -1832,18 +1832,163 @@
       }
     },
     {
+      "id": 50,
+      "title": "Running Pods",
+      "type": "stat",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 53,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          },
+          "expr": "sum(kube_pod_status_phase{phase=\"Running\"})",
+          "legendFormat": "Running Pods",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 51,
+      "title": "Pod Restarts (5m)",
+      "type": "stat",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 53,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          },
+          "expr": "sum(increase(kube_pod_container_status_restarts_total[5m]))",
+          "legendFormat": "Pod Restarts",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 52,
+      "title": "CPU Throttling %",
+      "type": "gauge",
+      "datasource": {
+        "uid": "prometheus",
+        "type": "prometheus"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 53,
+        "w": 8,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "prometheus",
+            "type": "prometheus"
+          },
+          "expr": "sum(rate(container_cpu_cfs_throttled_periods_total[5m])) / sum(rate(container_cpu_cfs_periods_total[5m])) * 100",
+          "legendFormat": "CPU Throttling %",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      }
+    },
+    {
       "id": 35,
       "type": "text",
       "title": "GPU Metrics",
       "gridPos": {
         "x": 0,
-        "y": 53,
+        "y": 57,
         "w": 12,
         "h": 4
       },
       "options": {
         "mode": "markdown",
-        "content": "GPU metrics pending \u2014 see homelab issue #138 (DCGM Exporter for RTX 3070)"
+        "content": "GPU metrics pending — see homelab issue #138 (DCGM Exporter for RTX 3070)"
       },
       "datasource": null,
       "fieldConfig": {
@@ -1856,13 +2001,13 @@
       "title": "Tdarr Metrics",
       "gridPos": {
         "x": 12,
-        "y": 53,
+        "y": 57,
         "w": 12,
         "h": 4
       },
       "options": {
         "mode": "markdown",
-        "content": "Tdarr transcode metrics pending \u2014 see homelab issue #139 (ServiceMonitor)"
+        "content": "Tdarr transcode metrics pending — see homelab issue #139 (ServiceMonitor)"
       },
       "datasource": null,
       "fieldConfig": {

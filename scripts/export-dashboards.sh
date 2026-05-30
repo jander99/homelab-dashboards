@@ -32,6 +32,10 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --output-dir)
+      if [[ -z "${2:-}" ]]; then
+        echo "Error: --output-dir requires an argument" >&2
+        exit 1
+      fi
       OUTPUT_DIR="$2"
       shift 2
       ;;
@@ -72,7 +76,7 @@ mkdir -p "$OUTPUT_DIR"
 # ---------------------------------------------------------------------------
 grafana_get() {
   # $1 = path (e.g. /api/search?type=dash-db)
-  curl --silent --fail \
+  curl --silent --fail --show-error \
     --user "${GRAFANA_USER}:${GRAFANA_PASSWORD}" \
     "${GRAFANA_URL}${1}"
 }
