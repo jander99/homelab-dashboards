@@ -2020,7 +2020,7 @@
     {
       "id": 49,
       "type": "stat",
-      "title": "Controller Info",
+      "title": "Controller Uptime",
       "datasource": {"uid": "prometheus", "type": "prometheus"},
       "gridPos": {"x": 0, "y": 153, "w": 12, "h": 4},
       "targets": [
