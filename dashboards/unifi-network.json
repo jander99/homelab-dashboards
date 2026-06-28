@@ -163,7 +163,7 @@
       "gridPos": {"x": 0, "y": 5, "w": 24, "h": 8},
       "targets": [
         {
-          "expr": "rate(unpoller_site_receive_rate_bytes[2m])",
+          "expr": "unpoller_site_receive_rate_bytes",
           "refId": "A",
           "legendFormat": "RX {{subsystem}}",
           "datasource": {"uid": "prometheus", "type": "prometheus"}
