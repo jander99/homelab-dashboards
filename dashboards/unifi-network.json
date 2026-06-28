@@ -1,0 +1,2100 @@
+{
+  "uid": "unifi-network",
+  "title": "Unifi Network",
+  "schemaVersion": 41,
+  "version": 1,
+  "time": {"from": "now-6h", "to": "now"},
+  "timepicker": {},
+  "panels": [
+    {
+      "id": 1,
+      "type": "row",
+      "title": "Site Overview",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 0, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Users",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 1, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(unpoller_site_users)",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Guests",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 6, "y": 1, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(unpoller_site_guests)",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "IoTs",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 1, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(unpoller_site_iots)",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Stations",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 18, "y": 1, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_site_stations",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "Site Throughput (RX rate)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 5, "w": 24, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_site_receive_rate_bytes",
+          "refId": "A",
+          "legendFormat": "RX {{subsystem}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "custom": {"lineWidth": 2, "fillOpacity": 10, "showPoints": "never"},
+          "color": {"mode": "palette-classic"}
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {"showLegend": true, "displayMode": "list", "placement": "bottom", "calcs": ["lastNotNull", "mean"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      }
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "Internet Drops (24h)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 13, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(increase(unpoller_site_intenet_drops_total[24h]))",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 1},
+              {"color": "red", "value": 10}
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "stat",
+      "title": "Site Latency",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 13, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_site_latency_seconds{subsystem=\"www\", status=\"ok\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 0.05},
+              {"color": "red", "value": 0.1}
+            ]
+          },
+          "noValue": "—"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "row",
+      "title": "Gateway (UDM SE)",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 17, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 10,
+      "type": "stat",
+      "title": "WAN Up Time",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 18, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "max(unpoller_device_uplink_uptime_seconds{name=\"Dream Machine\"})",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "red", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "green", "value": 300}
+            ]
+          },
+          "noValue": "—"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 11,
+      "type": "stat",
+      "title": "WAN RX Rate",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 6, "y": 18, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_device_wan_receive_rate_bytes{name=\"Dream Machine\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          },
+          "noValue": "Idle"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 12,
+      "type": "stat",
+      "title": "WAN TX Rate",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 18, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_device_wan_transmit_rate_bytes{name=\"Dream Machine\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          },
+          "noValue": "Idle"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 13,
+      "type": "stat",
+      "title": "UDM Load Avg (1m)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 18, "y": 18, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_device_load_average_1{name=\"Dream Machine\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 1},
+              {"color": "red", "value": 2}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 14,
+      "type": "gauge",
+      "title": "UDM CPU",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 22, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_cpu_utilization_ratio{name=\"Dream Machine\"} * 100",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 80}
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      }
+    },
+    {
+      "id": 15,
+      "type": "gauge",
+      "title": "UDM Memory",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 8, "y": 22, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_memory_utilization_ratio{name=\"Dream Machine\"} * 100",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 80}
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      }
+    },
+    {
+      "id": 16,
+      "type": "stat",
+      "title": "UDM Temperature",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 16, "y": 22, "w": 8, "h": 8},
+      "targets": [
+        {
+          "expr": "max(unpoller_device_temperature_celsius{name=\"Dream Machine\"})",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 65}
+            ]
+          },
+          "noValue": "—"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 17,
+      "type": "table",
+      "title": "Last Speedtest",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 30, "w": 24, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_speedtest_download{name=\"Dream Machine\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_speedtest_upload{name=\"Dream Machine\"}",
+          "refId": "B",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_speedtest_latency_seconds{name=\"Dream Machine\"}",
+          "refId": "C",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "namespace": true,
+              "pod": true,
+              "service": true,
+              "site_name": true,
+              "source": true,
+              "name": true,
+              "port": true
+            },
+            "renameByName": {
+              "Value": "value"
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "value", "desc": false}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {"id": "byName", "options": "A"},
+            "properties": [
+              {"id": "unit", "value": "Bps"},
+              {"id": "displayName", "value": "Download"}
+            ]
+          },
+          {
+            "matcher": {"id": "byName", "options": "B"},
+            "properties": [
+              {"id": "unit", "value": "Bps"},
+              {"id": "displayName", "value": "Upload"}
+            ]
+          },
+          {
+            "matcher": {"id": "byName", "options": "C"},
+            "properties": [
+              {"id": "unit", "value": "s"},
+              {"id": "displayName", "value": "Latency"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": "row",
+      "title": "Wireless (2 APs)",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 38, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 19,
+      "type": "table",
+      "title": "Per-AP Clients",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 39, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "sum by (name) (unpoller_device_stations{type=\"uap\"})",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "AP",
+              "Value": "Clients"
+            },
+            "excludeByName": {
+              "Time": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Clients", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 20,
+      "type": "timeseries",
+      "title": "Per-AP Channel Utilization",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 39, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_radio_channel_utilization_total_ratio * 100",
+          "refId": "A",
+          "legendFormat": "{{name}} {{band}}GHz",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "custom": {"lineWidth": 2, "fillOpacity": 10, "showPoints": "never"},
+          "color": {"mode": "palette-classic"}
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {"showLegend": true, "displayMode": "list", "placement": "bottom", "calcs": ["lastNotNull", "mean"]},
+        "tooltip": {"mode": "multi", "sort": "desc"}
+      }
+    },
+    {
+      "id": 21,
+      "type": "stat",
+      "title": "Per-AP Transmit Power",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 47, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "avg by (name) (unpoller_device_radio_transmit_power{name=\"Front AP\"})",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        },
+        {
+          "expr": "avg by (name) (unpoller_device_radio_transmit_power{name=\"Back AP\"})",
+          "refId": "B",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dBm",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 20},
+              {"color": "red", "value": 30}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 22,
+      "type": "stat",
+      "title": "Front AP VAP Satisfaction",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 47, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "avg(unpoller_device_vap_satisfaction_ratio{name=\"Front AP\", essid=\"LCARS\"}) * 100",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "red", "value": null},
+              {"color": "yellow", "value": 80},
+              {"color": "green", "value": 90}
+            ]
+          },
+          "noValue": "—"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 23,
+      "type": "stat",
+      "title": "Back AP VAP Satisfaction",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 18, "y": 47, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "avg(unpoller_device_vap_satisfaction_ratio{name=\"Back AP\", essid=\"LCARS\"}) * 100",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "red", "value": null},
+              {"color": "yellow", "value": 80},
+              {"color": "green", "value": 90}
+            ]
+          },
+          "noValue": "—"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 24,
+      "type": "table",
+      "title": "Connected Clients by Band",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 51, "w": 24, "h": 8},
+      "targets": [
+        {
+          "expr": "sum by (band) (unpoller_topology_connections_by_band)",
+          "refId": "A",
+          "legendFormat": "{{band}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "renameByName": {
+              "band": "Band",
+              "Value": "Clients"
+            },
+            "excludeByName": {
+              "Time": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Band", "desc": false}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 25,
+      "type": "row",
+      "title": "Wired (US24 + Flex Mini)",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 59, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 26,
+      "type": "table",
+      "title": "US24 Per-Port Throughput",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 60, "w": 24, "h": 10},
+      "targets": [
+        {
+          "expr": "rate(unpoller_device_port_receive_bytes_total{name=\"US 24\", port_name!=\"\"}[2m])",
+          "refId": "A",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "rate(unpoller_device_port_transmit_bytes_total{name=\"US 24\", port_name!=\"\"}[2m])",
+          "refId": "B",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_port_receive_errors_total{name=\"US 24\", port_name!=\"\"}",
+          "refId": "C",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_port_receive_dropped_total{name=\"US 24\", port_name!=\"\"}",
+          "refId": "D",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "port_name": "Port",
+              "A": "RX B/s",
+              "B": "TX B/s",
+              "C": "Errors",
+              "D": "Drops"
+            },
+            "excludeByName": {
+              "Time": true,
+              "port_id": true,
+              "port_num": true,
+              "port_ip": true,
+              "port_mac": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "name": true,
+              "namespace": true,
+              "pod": true,
+              "service": true,
+              "site_name": true,
+              "source": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "RX B/s", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {"id": "byName", "options": "RX B/s"},
+            "properties": [{"id": "unit", "value": "Bps"}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "TX B/s"},
+            "properties": [{"id": "unit", "value": "Bps"}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Errors"},
+            "properties": [
+              {"id": "unit", "value": "short"},
+              {"id": "decimals", "value": 0}
+            ]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Drops"},
+            "properties": [
+              {"id": "unit", "value": "short"},
+              {"id": "decimals", "value": 0}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": "table",
+      "title": "UDM PoE Per-Port",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 70, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_port_poe_watts{name=\"Dream Machine\", port_name!=\"\"}",
+          "refId": "A",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_port_poe_volts{name=\"Dream Machine\", port_name!=\"\"}",
+          "refId": "B",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_port_poe_amperes{name=\"Dream Machine\", port_name!=\"\"}",
+          "refId": "C",
+          "legendFormat": "{{port_name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "port_name": "Port",
+              "A": "Watts",
+              "B": "Volts",
+              "C": "Amps"
+            },
+            "excludeByName": {
+              "Time": true,
+              "port_id": true,
+              "port_num": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "name": true,
+              "namespace": true,
+              "pod": true,
+              "service": true,
+              "site_name": true,
+              "source": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Port", "desc": false}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {"id": "byName", "options": "Watts"},
+            "properties": [{"id": "unit", "value": "watt"}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Volts"},
+            "properties": [{"id": "unit", "value": "volt"}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Amps"},
+            "properties": [{"id": "unit", "value": "amp"}]
+          }
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "type": "stat",
+      "title": "UDM Total PoE",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 70, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "sum(unpoller_device_port_poe_watts{name=\"Dream Machine\"})",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "watt",
+          "decimals": 2,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 20},
+              {"color": "red", "value": 25}
+            ]
+          },
+          "noValue": "0 W"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 29,
+      "type": "stat",
+      "title": "USW Flex Mini Status",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 78, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_uptime_seconds{name=\"USW Flex Mini\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        },
+        {
+          "expr": "unpoller_device_temperature_celsius{name=\"USW Flex Mini\"}",
+          "refId": "B",
+          "legendFormat": "Temp °C",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "red", "value": null},
+              {"color": "green", "value": 60}
+            ]
+          },
+          "noValue": "No data"
+        },
+        "overrides": [
+          {
+            "matcher": {"id": "byName", "options": "B"},
+            "properties": [
+              {"id": "unit", "value": "celsius"},
+              {"id": "decimals", "value": 1}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": "stat",
+      "title": "Port Errors (alertable)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 78, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "sum(rate(unpoller_device_port_receive_errors_total[5m])) + sum(rate(unpoller_device_port_transmit_errors_total[5m]))",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 3,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 0.01},
+              {"color": "red", "value": 0.1}
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 31,
+      "type": "row",
+      "title": "Clients",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 86, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 32,
+      "type": "table",
+      "title": "Top 20 Clients by Transfer Rate",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 87, "w": 24, "h": 10},
+"targets": [
+        {
+          "expr": "topk(20, unpoller_client_transfer_rate_bytes)",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Hostname",
+              "ap_name": "AP",
+              "Value": "Rate B/s"
+            },
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "bssid": true,
+              "channel": true,
+              "container": true,
+              "endpoint": true,
+              "essid": true,
+              "gw_name": true,
+              "instance": true,
+              "ip": true,
+              "job": true,
+              "mac": true,
+              "namespace": true,
+              "network": true,
+              "oui": true,
+              "pod": true,
+              "radio": true,
+              "radio_desc": true,
+              "radio_name": true,
+              "radio_proto": true,
+              "service": true,
+              "site_name": true,
+              "source": true,
+              "wired": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Rate B/s", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 33,
+      "type": "stat",
+      "title": "Wired Clients",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 97, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_topology_connections_wired",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 34,
+      "type": "stat",
+      "title": "Wireless Clients",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 6, "y": 97, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_topology_connections_wireless",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 35,
+      "type": "stat",
+      "title": "Total Active Clients",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 97, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_topology_clients_total",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 36,
+      "type": "stat",
+      "title": "Roams (1h)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 18, "y": 97, "w": 6, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(increase(unpoller_client_roam_count_total[1h]))",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 5},
+              {"color": "red", "value": 10}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 37,
+      "type": "table",
+      "title": "Worst-Signal Clients (bottom 5)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 101, "w": 24, "h": 8},
+      "targets": [
+        {
+          "expr": "bottomk(5, unpoller_client_rssi_db)",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Hostname",
+              "ap_name": "AP",
+              "Value": "RSSI dBm"
+            },
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "bssid": true,
+              "container": true,
+              "endpoint": true,
+              "essid": true,
+              "gw_name": true,
+              "instance": true,
+              "ip": true,
+              "job": true,
+              "mac": true,
+              "namespace": true,
+              "network": true,
+              "oui": true,
+              "pod": true,
+              "radio": true,
+              "service": true,
+              "site_name": true,
+              "source": true,
+              "wired": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "RSSI dBm", "desc": false}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dBm"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 38,
+      "type": "row",
+      "title": "Device Health",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 109, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 39,
+      "type": "table",
+      "title": "Device Temperatures",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 110, "w": 24, "h": 8},
+      "targets": [
+        {
+          "expr": "max by (name) (unpoller_device_temperature_celsius)",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Device",
+              "Value": "Temp °C"
+            },
+            "excludeByName": {
+              "Time": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Temp °C", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "celsius",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 65}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 40,
+      "type": "table",
+      "title": "Device CPU",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 118, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_cpu_utilization_ratio * 100",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Device",
+              "Value": "CPU %"
+            },
+            "excludeByName": {
+              "Time": true,
+              "type": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "CPU %", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 80}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 41,
+      "type": "table",
+      "title": "Device Memory",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 118, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_memory_utilization_ratio * 100",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Device",
+              "Value": "Mem %"
+            },
+            "excludeByName": {
+              "Time": true,
+              "type": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Mem %", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 80}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 42,
+      "type": "table",
+      "title": "Device Uptime",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 126, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_uptime_seconds",
+          "refId": "A",
+          "legendFormat": "{{name}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Device",
+              "Value": "Uptime"
+            },
+            "excludeByName": {
+              "Time": true,
+              "type": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Uptime", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 43,
+      "type": "stat",
+      "title": "Fan Level (US 24)",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 126, "w": 12, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_fan_level",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null},
+              {"color": "yellow", "value": 60},
+              {"color": "red", "value": 85}
+            ]
+          },
+          "noValue": "N/A"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 44,
+      "type": "table",
+      "title": "Load Average by Device",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 134, "w": 24, "h": 8},
+      "targets": [
+        {
+          "expr": "unpoller_device_load_average_1",
+          "refId": "A",
+          "legendFormat": "{{name}} 1m",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_load_average_5",
+          "refId": "B",
+          "legendFormat": "{{name}} 5m",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_device_load_average_15",
+          "refId": "C",
+          "legendFormat": "{{name}} 15m",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "name": "Device",
+              "A": "1m",
+              "B": "5m",
+              "C": "15m"
+            },
+            "excludeByName": {
+              "Time": true,
+              "type": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "namespace": true,
+              "pod": true,
+              "service": true,
+              "site_name": true,
+              "source": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "1m", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 45,
+      "type": "row",
+      "title": "DHCP & WAN",
+      "collapsed": false,
+      "gridPos": {"x": 0, "y": 142, "w": 24, "h": 1},
+      "panels": [],
+      "fieldConfig": {"defaults": {}}
+    },
+    {
+      "id": 46,
+      "type": "table",
+      "title": "DHCP Pool Utilization",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 143, "w": 24, "h": 6},
+      "targets": [
+        {
+          "expr": "unpoller_dhcp_utilization_percent",
+          "refId": "A",
+          "legendFormat": "{{network}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_dhcp_active_leases",
+          "refId": "B",
+          "legendFormat": "{{network}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_dhcp_pool_size",
+          "refId": "C",
+          "legendFormat": "{{network}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        },
+        {
+          "expr": "unpoller_dhcp_available_ips",
+          "refId": "D",
+          "legendFormat": "{{network}}",
+          "datasource": {"uid": "prometheus", "type": "prometheus"},
+          "format": "table",
+          "instant": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "indexByName": {},
+            "renameByName": {
+              "network": "Network",
+              "A": "Used %",
+              "B": "Active Leases",
+              "C": "Pool Size",
+              "D": "Available"
+            },
+            "excludeByName": {
+              "Time": true,
+              "network_id": true,
+              "__name__": true,
+              "container": true,
+              "endpoint": true,
+              "instance": true,
+              "job": true,
+              "namespace": true,
+              "pod": true,
+              "service": true,
+              "site_name": true,
+              "source": true
+            }
+          }
+        }
+      ],
+      "options": {
+        "sortBy": [
+          {"displayName": "Used %", "desc": true}
+        ],
+        "footer": {"show": false}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {"id": "byName", "options": "Used %"},
+            "properties": [{"id": "unit", "value": "percent"}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Active Leases"},
+            "properties": [{"id": "unit", "value": "short"}, {"id": "decimals", "value": 0}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Pool Size"},
+            "properties": [{"id": "unit", "value": "short"}, {"id": "decimals", "value": 0}]
+          },
+          {
+            "matcher": {"id": "byName", "options": "Available"},
+            "properties": [{"id": "unit", "value": "short"}, {"id": "decimals", "value": 0}]
+          }
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "type": "stat",
+      "title": "DHCP Active Leases",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 149, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "sum(unpoller_dhcp_active_leases)",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 48,
+      "type": "stat",
+      "title": "Controller Up",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 149, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_controller_up",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {"text": "Down", "color": "red", "index": 0},
+                "1": {"text": "Up", "color": "green", "index": 1}
+              }
+            }
+          ],
+          "noValue": "Unknown"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 49,
+      "type": "stat",
+      "title": "Controller Uptime",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 0, "y": 153, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_controller_uptime_seconds",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "green", "value": null}
+            ]
+          },
+          "noValue": "No data"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 50,
+      "type": "stat",
+      "title": "UDM Bytes Total",
+      "datasource": {"uid": "prometheus", "type": "prometheus"},
+      "gridPos": {"x": 12, "y": 153, "w": 12, "h": 4},
+      "targets": [
+        {
+          "expr": "unpoller_device_bytes_total{name=\"Dream Machine\"}",
+          "refId": "A",
+          "datasource": {"uid": "prometheus", "type": "prometheus"}
+        }
+      ],
+      "options": {
+        "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false},
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "color": {"mode": "thresholds"},
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "blue", "value": null}
+            ]
+          },
+          "noValue": "0"
+        },
+        "overrides": []
+      }
+    }
+  ],
+  "tags": ["homelab", "unifi", "network"],
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "weekStart": ""
+}
