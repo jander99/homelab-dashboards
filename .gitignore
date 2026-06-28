@@ -1,0 +1,12 @@
+# Local planning/evidence (project memory, never committed)
+.omo/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
