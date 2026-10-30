@@ -23,7 +23,7 @@
     {
       "id": 1,
       "type": "row",
-      "title": "K3s Node (homelab)",
+      "title": "K3s Nodes",
       "collapsed": false,
       "gridPos": {
         "x": 0,
@@ -52,13 +52,13 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"idle\"}[$__rate_interval])))",
+          "expr": "(100 * (1 - avg by(instance)(rate(node_cpu_seconds_total{job=\"node-exporter\",instance=~\"$node_instance\",mode=\"idle\"}[$__rate_interval])))) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -120,13 +120,13 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - node_memory_MemAvailable_bytes{job=\"node-exporter\"} / node_memory_MemTotal_bytes{job=\"node-exporter\"})",
+          "expr": "(100 * (1 - node_memory_MemAvailable_bytes{job=\"node-exporter\",instance=~\"$node_instance\"} / node_memory_MemTotal_bytes{job=\"node-exporter\",instance=~\"$node_instance\"})) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -188,13 +188,13 @@
       },
       "targets": [
         {
-          "expr": "node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
+          "expr": "(node_memory_MemAvailable_bytes{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -254,13 +254,13 @@
       },
       "targets": [
         {
-          "expr": "100 * avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"iowait\"}[$__rate_interval]))",
+          "expr": "(100 * avg by(instance)(rate(node_cpu_seconds_total{job=\"node-exporter\",instance=~\"$node_instance\",mode=\"iowait\"}[$__rate_interval]))) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -322,13 +322,13 @@
       },
       "targets": [
         {
-          "expr": "node_load1{job=\"node-exporter\"}",
+          "expr": "(node_load1{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -388,13 +388,13 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",mountpoint=\"/\"} / node_filesystem_size_bytes{job=\"node-exporter\",mountpoint=\"/\"})",
+          "expr": "(100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",instance=~\"$node_instance\",mountpoint=\"/\"} / node_filesystem_size_bytes{job=\"node-exporter\",instance=~\"$node_instance\",mountpoint=\"/\"})) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -456,31 +456,31 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"idle\"}[$__rate_interval])))",
+          "expr": "(100 * (1 - avg by(instance)(rate(node_cpu_seconds_total{job=\"node-exporter\",instance=~\"$node_instance\",mode=\"idle\"}[$__rate_interval])))) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "CPU %"
+          "legendFormat": "{{nodename}} CPU %"
         },
         {
-          "expr": "100 * avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"iowait\"}[$__rate_interval]))",
+          "expr": "(100 * avg by(instance)(rate(node_cpu_seconds_total{job=\"node-exporter\",instance=~\"$node_instance\",mode=\"iowait\"}[$__rate_interval]))) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "iowait %"
+          "legendFormat": "{{nodename}} iowait %"
         },
         {
-          "expr": "100 * avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"system\"}[$__rate_interval]))",
+          "expr": "(100 * avg by(instance)(rate(node_cpu_seconds_total{job=\"node-exporter\",instance=~\"$node_instance\",mode=\"system\"}[$__rate_interval]))) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "system %"
+          "legendFormat": "{{nodename}} system %"
         }
       ],
       "options": {
@@ -539,31 +539,31 @@
       },
       "targets": [
         {
-          "expr": "node_memory_MemTotal_bytes{job=\"node-exporter\"} - node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
+          "expr": "(node_memory_MemTotal_bytes{job=\"node-exporter\",instance=~\"$node_instance\"} - node_memory_MemAvailable_bytes{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "Used"
+          "legendFormat": "{{nodename}} Used"
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
+          "expr": "(node_memory_MemAvailable_bytes{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "Available"
+          "legendFormat": "{{nodename}} Available"
         },
         {
-          "expr": "node_memory_Cached_bytes{job=\"node-exporter\"}",
+          "expr": "(node_memory_Cached_bytes{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "Page cache"
+          "legendFormat": "{{nodename}} Page cache"
         }
       ],
       "options": {
@@ -620,31 +620,31 @@
       },
       "targets": [
         {
-          "expr": "node_load1{job=\"node-exporter\"}",
+          "expr": "(node_load1{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "1m"
+          "legendFormat": "{{nodename}} 1m"
         },
         {
-          "expr": "node_load5{job=\"node-exporter\"}",
+          "expr": "(node_load5{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "5m"
+          "legendFormat": "{{nodename}} 5m"
         },
         {
-          "expr": "node_load15{job=\"node-exporter\"}",
+          "expr": "(node_load15{job=\"node-exporter\",instance=~\"$node_instance\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "15m"
+          "legendFormat": "{{nodename}} 15m"
         }
       ],
       "options": {
@@ -702,22 +702,22 @@
       },
       "targets": [
         {
-          "expr": "rate(node_disk_read_bytes_total{job=\"node-exporter\",device=\"sda\"}[$__rate_interval])",
+          "expr": "(rate(node_disk_read_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"sda\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "read"
+          "legendFormat": "{{nodename}} read"
         },
         {
-          "expr": "rate(node_disk_written_bytes_total{job=\"node-exporter\",device=\"sda\"}[$__rate_interval])",
+          "expr": "(rate(node_disk_written_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"sda\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "write"
+          "legendFormat": "{{nodename}} write"
         }
       ],
       "options": {
@@ -775,13 +775,13 @@
       },
       "targets": [
         {
-          "expr": "100 * rate(node_disk_io_time_seconds_total{job=\"node-exporter\",device=\"sda\"}[$__rate_interval])",
+          "expr": "(100 * rate(node_disk_io_time_seconds_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"sda\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "sda busy"
+          "legendFormat": "{{nodename}} sda busy"
         }
       ],
       "options": {
@@ -840,22 +840,22 @@
       },
       "targets": [
         {
-          "expr": "rate(node_network_receive_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_receive_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "RX"
+          "legendFormat": "{{nodename}} RX"
         },
         {
-          "expr": "rate(node_network_transmit_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_transmit_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "TX"
+          "legendFormat": "{{nodename}} TX"
         }
       ],
       "options": {
@@ -913,13 +913,13 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",fstype=~\"ext4|xfs|btrfs\"} / node_filesystem_size_bytes{job=\"node-exporter\",fstype=~\"ext4|xfs|btrfs\"})",
+          "expr": "(100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",instance=~\"$node_instance\",fstype=~\"ext4|xfs|btrfs\"} / node_filesystem_size_bytes{job=\"node-exporter\",instance=~\"$node_instance\",fstype=~\"ext4|xfs|btrfs\"})) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "{{mountpoint}}",
+          "legendFormat": "{{nodename}} {{mountpoint}}",
           "instant": true
         }
       ],
@@ -981,13 +981,13 @@
       },
       "targets": [
         {
-          "expr": "node_nvme_namespace_used_bytes{job=\"node-exporter\"} / node_nvme_namespace_capacity_bytes{job=\"node-exporter\"} * 100",
+          "expr": "(node_nvme_namespace_used_bytes{job=\"node-exporter\",instance=~\"$node_instance\"} / node_nvme_namespace_capacity_bytes{job=\"node-exporter\",instance=~\"$node_instance\"} * 100) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "nvme0 ns{{nsid}}",
+          "legendFormat": "{{nodename}} nvme0 ns{{nsid}}",
           "instant": true
         }
       ],
@@ -2339,22 +2339,22 @@
       },
       "targets": [
         {
-          "expr": "100 * rate(node_network_receive_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{job=\"node-exporter\",device=\"eno1\"}",
+          "expr": "(100 * rate(node_network_receive_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "RX %"
+          "legendFormat": "{{nodename}} RX %"
         },
         {
-          "expr": "100 * rate(node_network_transmit_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{job=\"node-exporter\",device=\"eno1\"}",
+          "expr": "(100 * rate(node_network_transmit_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "TX %"
+          "legendFormat": "{{nodename}} TX %"
         }
       ],
       "options": {
@@ -2425,22 +2425,22 @@
       },
       "targets": [
         {
-          "expr": "rate(node_network_receive_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_receive_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "RX"
+          "legendFormat": "{{nodename}} RX"
         },
         {
-          "expr": "-rate(node_network_transmit_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(-rate(node_network_transmit_bytes_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "TX"
+          "legendFormat": "{{nodename}} TX"
         }
       ],
       "options": {
@@ -2498,40 +2498,40 @@
       },
       "targets": [
         {
-          "expr": "rate(node_network_receive_drop_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_receive_drop_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "RX drop/s"
+          "legendFormat": "{{nodename}} RX drop/s"
         },
         {
-          "expr": "rate(node_network_transmit_drop_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_transmit_drop_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "TX drop/s"
+          "legendFormat": "{{nodename}} TX drop/s"
         },
         {
-          "expr": "rate(node_network_receive_errs_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_receive_errs_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "RX err/s"
+          "legendFormat": "{{nodename}} RX err/s"
         },
         {
-          "expr": "rate(node_network_transmit_errs_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "(rate(node_network_transmit_errs_total{job=\"node-exporter\",instance=~\"$node_instance\",device=\"eno1\"}[$__rate_interval])) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "D",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "TX err/s"
+          "legendFormat": "{{nodename}} TX err/s"
         }
       ],
       "options": {
@@ -3350,13 +3350,13 @@
       },
       "targets": [
         {
-          "expr": "max(node_hwmon_temp_celsius{job=\"node-exporter\",chip=\"platform_coretemp_0\"})",
+          "expr": "(max by(instance)(node_hwmon_temp_celsius{job=\"node-exporter\",instance=~\"$node_instance\",chip=\"platform_coretemp_0\"})) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": ""
+          "legendFormat": "{{nodename}}"
         }
       ],
       "options": {
@@ -3771,13 +3771,13 @@
           "legendFormat": "{{instance}} max core"
         },
         {
-          "expr": "node_thermal_zone_temp{job=\"node-exporter\",type=\"x86_pkg_temp\"}",
+          "expr": "(node_thermal_zone_temp{job=\"node-exporter\",instance=~\"$node_instance\",type=\"x86_pkg_temp\"}) * on(instance) group_left(nodename) node_uname_info{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
             "type": "prometheus"
           },
-          "legendFormat": "K3s x86_pkg_temp"
+          "legendFormat": "{{nodename}} K3s x86_pkg_temp"
         }
       ],
       "options": {
@@ -4292,5 +4292,59 @@
       },
       "description": "Longhorn reports latency in nanoseconds."
     }
-  ]
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "node",
+        "label": "Node",
+        "type": "query",
+        "datasource": {
+          "uid": "prometheus",
+          "type": "prometheus"
+        },
+        "query": {
+          "query": "label_values(node_uname_info{job=\"node-exporter\"}, nodename)",
+          "refId": "v_node"
+        },
+        "definition": "label_values(node_uname_info{job=\"node-exporter\"}, nodename)",
+        "refresh": 2,
+        "sort": 1,
+        "multi": true,
+        "includeAll": true,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 0,
+        "options": [],
+        "regex": ""
+      },
+      {
+        "name": "node_instance",
+        "label": "Node instance",
+        "type": "query",
+        "datasource": {
+          "uid": "prometheus",
+          "type": "prometheus"
+        },
+        "query": {
+          "query": "label_values(node_uname_info{job=\"node-exporter\",nodename=~\"$node\"}, instance)",
+          "refId": "v_node_instance"
+        },
+        "definition": "label_values(node_uname_info{job=\"node-exporter\",nodename=~\"$node\"}, instance)",
+        "refresh": 2,
+        "sort": 1,
+        "multi": true,
+        "includeAll": true,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "hide": 2,
+        "options": [],
+        "regex": ""
+      }
+    ]
+  }
 }
