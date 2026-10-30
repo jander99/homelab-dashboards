@@ -1430,7 +1430,7 @@
       },
       "targets": [
         {
-          "expr": "node_filesystem_avail_bytes{instance=\"192.168.1.128:9100\", mountpoint=\"/\"}",
+          "expr": "node_filesystem_avail_bytes{job=\"node-exporter\", mountpoint=\"/\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -1617,7 +1617,7 @@
       },
       "targets": [
         {
-          "expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", instance=\"192.168.1.128:9100\"}[5m]))) * 100",
+          "expr": "(1 - avg(rate(node_cpu_seconds_total{mode=\"idle\", job=\"node-exporter\"}[5m]))) * 100",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -1675,7 +1675,7 @@
       },
       "targets": [
         {
-          "expr": "node_memory_MemTotal_bytes{instance=\"192.168.1.128:9100\"} - node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_memory_MemTotal_bytes{job=\"node-exporter\"} - node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
