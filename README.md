@@ -42,7 +42,7 @@ Columns: metric prefix, `job` label, scrape interval, dashboard that uses it.
 | `prowlarr_*` (exportarr) | `prowlarr` | 4m | media-pipeline, homelab-overview |
 | `sabnzbd_*`, `gluetun_*` (VPN sidecar) | `sabnzbd` | 4m | download-health, media-pipeline, homelab-overview |
 | `qbittorrent_*`, `gluetun_*` (VPN sidecar) | `qbittorrent` | 4m | download-health, media-pipeline, homelab-overview |
-| `tdarr_*` | `tdarr-exporter` | 1m | homelab-overview only (tdarr-transcoding: no dashboard yet) |
+| `tdarr_*` | `tdarr-exporter` | 1m | homelab-overview, tdarr-transcoding |
 
 Key exportarr series: `{app}_episode_*` / `radarr_movie_*` (total, downloaded, missing, cutoff_unmet), `{app}_queue_total{status,download_status,download_state}`, `{app}_rootfolder_freespace_bytes{path}` (sonarr, radarr), `{app}_system_status` (1=up), `prowlarr_indexer_*{indexer}`.
 
@@ -63,7 +63,7 @@ Key exportarr series: `{app}_episode_*` / `radarr_movie_*` (total, downloaded, m
 |---|---|---|---|
 | `unpoller_*` (Unifi) | `unpoller` | 30s | unifi-network |
 | `pihole_*` | `pihole/pihole-prometheus-exporter` (PodMonitor) | 1m | pihole-dns, homelab-overview |
-| `probe_*` (blackbox: portainer, headlamp, authentik, tdarr, goldilocks) | `probe/monitoring/<name>` | 1m | homelab-overview |
+| `probe_*` (blackbox: portainer, headlamp, authentik, tdarr, goldilocks, sabnzbd, qbittorrent) | `probe/monitoring/<name>` | 1m | homelab-overview, download-health |
 | `gatus_*` (gatus_results_*) | `gatus` | 1m | no dashboard yet |
 | `certmanager_*` | `monitoring/cert-manager` | 1m | no dashboard yet |
 
@@ -88,8 +88,7 @@ Key exportarr series: `{app}_episode_*` / `radarr_movie_*` (total, downloaded, m
 | dashboards/unifi-network.json | unifi-network |
 | dashboards/pihole-dns.json | pihole-dns |
 | dashboards/k3s-logs.json | k3s-logs |
-
-Planned: tdarr-transcoding (tdarr_* is live, dashboard not yet merged).
+| dashboards/tdarr-transcoding.json | tdarr-transcoding |
 
 ## Adding a Dashboard
 1. Build in Grafana UI (https://grafana.homelab.properties)
