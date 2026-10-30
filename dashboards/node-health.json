@@ -23,7 +23,7 @@
     {
       "id": 1,
       "type": "row",
-      "title": "K3s Node (192.168.1.128)",
+      "title": "K3s Node (homelab)",
       "collapsed": false,
       "gridPos": {
         "x": 0,
@@ -52,7 +52,7 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{instance=\"192.168.1.128:9100\",mode=\"idle\"}[$__rate_interval])))",
+          "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"idle\"}[$__rate_interval])))",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -120,7 +120,7 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"} / node_memory_MemTotal_bytes{instance=\"192.168.1.128:9100\"})",
+          "expr": "100 * (1 - node_memory_MemAvailable_bytes{job=\"node-exporter\"} / node_memory_MemTotal_bytes{job=\"node-exporter\"})",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -188,7 +188,7 @@
       },
       "targets": [
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -254,7 +254,7 @@
       },
       "targets": [
         {
-          "expr": "100 * avg(rate(node_cpu_seconds_total{instance=\"192.168.1.128:9100\",mode=\"iowait\"}[$__rate_interval]))",
+          "expr": "100 * avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"iowait\"}[$__rate_interval]))",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -322,7 +322,7 @@
       },
       "targets": [
         {
-          "expr": "node_load1{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_load1{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -388,7 +388,7 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - node_filesystem_avail_bytes{instance=\"192.168.1.128:9100\",mountpoint=\"/\"} / node_filesystem_size_bytes{instance=\"192.168.1.128:9100\",mountpoint=\"/\"})",
+          "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",mountpoint=\"/\"} / node_filesystem_size_bytes{job=\"node-exporter\",mountpoint=\"/\"})",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -456,7 +456,7 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{instance=\"192.168.1.128:9100\",mode=\"idle\"}[$__rate_interval])))",
+          "expr": "100 * (1 - avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"idle\"}[$__rate_interval])))",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -465,7 +465,7 @@
           "legendFormat": "CPU %"
         },
         {
-          "expr": "100 * avg(rate(node_cpu_seconds_total{instance=\"192.168.1.128:9100\",mode=\"iowait\"}[$__rate_interval]))",
+          "expr": "100 * avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"iowait\"}[$__rate_interval]))",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -474,7 +474,7 @@
           "legendFormat": "iowait %"
         },
         {
-          "expr": "100 * avg(rate(node_cpu_seconds_total{instance=\"192.168.1.128:9100\",mode=\"system\"}[$__rate_interval]))",
+          "expr": "100 * avg(rate(node_cpu_seconds_total{job=\"node-exporter\",mode=\"system\"}[$__rate_interval]))",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
@@ -539,7 +539,7 @@
       },
       "targets": [
         {
-          "expr": "node_memory_MemTotal_bytes{instance=\"192.168.1.128:9100\"} - node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_memory_MemTotal_bytes{job=\"node-exporter\"} - node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -548,7 +548,7 @@
           "legendFormat": "Used"
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_memory_MemAvailable_bytes{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -557,7 +557,7 @@
           "legendFormat": "Available"
         },
         {
-          "expr": "node_memory_Cached_bytes{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_memory_Cached_bytes{job=\"node-exporter\"}",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
@@ -620,7 +620,7 @@
       },
       "targets": [
         {
-          "expr": "node_load1{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_load1{job=\"node-exporter\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -629,7 +629,7 @@
           "legendFormat": "1m"
         },
         {
-          "expr": "node_load5{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_load5{job=\"node-exporter\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -638,7 +638,7 @@
           "legendFormat": "5m"
         },
         {
-          "expr": "node_load15{instance=\"192.168.1.128:9100\"}",
+          "expr": "node_load15{job=\"node-exporter\"}",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
@@ -702,7 +702,7 @@
       },
       "targets": [
         {
-          "expr": "rate(node_disk_read_bytes_total{instance=\"192.168.1.128:9100\",device=\"sda\"}[$__rate_interval])",
+          "expr": "rate(node_disk_read_bytes_total{job=\"node-exporter\",device=\"sda\"}[$__rate_interval])",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -711,7 +711,7 @@
           "legendFormat": "read"
         },
         {
-          "expr": "rate(node_disk_written_bytes_total{instance=\"192.168.1.128:9100\",device=\"sda\"}[$__rate_interval])",
+          "expr": "rate(node_disk_written_bytes_total{job=\"node-exporter\",device=\"sda\"}[$__rate_interval])",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -775,7 +775,7 @@
       },
       "targets": [
         {
-          "expr": "100 * rate(node_disk_io_time_seconds_total{instance=\"192.168.1.128:9100\",device=\"sda\"}[$__rate_interval])",
+          "expr": "100 * rate(node_disk_io_time_seconds_total{job=\"node-exporter\",device=\"sda\"}[$__rate_interval])",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -840,7 +840,7 @@
       },
       "targets": [
         {
-          "expr": "rate(node_network_receive_bytes_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_receive_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -849,7 +849,7 @@
           "legendFormat": "RX"
         },
         {
-          "expr": "rate(node_network_transmit_bytes_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_transmit_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -913,7 +913,7 @@
       },
       "targets": [
         {
-          "expr": "100 * (1 - node_filesystem_avail_bytes{instance=\"192.168.1.128:9100\",fstype=~\"ext4|xfs|btrfs\"} / node_filesystem_size_bytes{instance=\"192.168.1.128:9100\",fstype=~\"ext4|xfs|btrfs\"})",
+          "expr": "100 * (1 - node_filesystem_avail_bytes{job=\"node-exporter\",fstype=~\"ext4|xfs|btrfs\"} / node_filesystem_size_bytes{job=\"node-exporter\",fstype=~\"ext4|xfs|btrfs\"})",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -981,7 +981,7 @@
       },
       "targets": [
         {
-          "expr": "node_nvme_namespace_used_bytes{instance=\"192.168.1.128:9100\"} / node_nvme_namespace_capacity_bytes{instance=\"192.168.1.128:9100\"} * 100",
+          "expr": "node_nvme_namespace_used_bytes{job=\"node-exporter\"} / node_nvme_namespace_capacity_bytes{job=\"node-exporter\"} * 100",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -2339,7 +2339,7 @@
       },
       "targets": [
         {
-          "expr": "100 * rate(node_network_receive_bytes_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{instance=\"192.168.1.128:9100\",device=\"eno1\"}",
+          "expr": "100 * rate(node_network_receive_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{job=\"node-exporter\",device=\"eno1\"}",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -2348,7 +2348,7 @@
           "legendFormat": "RX %"
         },
         {
-          "expr": "100 * rate(node_network_transmit_bytes_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{instance=\"192.168.1.128:9100\",device=\"eno1\"}",
+          "expr": "100 * rate(node_network_transmit_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval]) / node_network_speed_bytes{job=\"node-exporter\",device=\"eno1\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -2425,7 +2425,7 @@
       },
       "targets": [
         {
-          "expr": "rate(node_network_receive_bytes_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_receive_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -2434,7 +2434,7 @@
           "legendFormat": "RX"
         },
         {
-          "expr": "-rate(node_network_transmit_bytes_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "-rate(node_network_transmit_bytes_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -2498,7 +2498,7 @@
       },
       "targets": [
         {
-          "expr": "rate(node_network_receive_drop_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_receive_drop_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -2507,7 +2507,7 @@
           "legendFormat": "RX drop/s"
         },
         {
-          "expr": "rate(node_network_transmit_drop_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_transmit_drop_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
@@ -2516,7 +2516,7 @@
           "legendFormat": "TX drop/s"
         },
         {
-          "expr": "rate(node_network_receive_errs_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_receive_errs_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "C",
           "datasource": {
             "uid": "prometheus",
@@ -2525,7 +2525,7 @@
           "legendFormat": "RX err/s"
         },
         {
-          "expr": "rate(node_network_transmit_errs_total{instance=\"192.168.1.128:9100\",device=\"eno1\"}[$__rate_interval])",
+          "expr": "rate(node_network_transmit_errs_total{job=\"node-exporter\",device=\"eno1\"}[$__rate_interval])",
           "refId": "D",
           "datasource": {
             "uid": "prometheus",
@@ -3350,7 +3350,7 @@
       },
       "targets": [
         {
-          "expr": "max(node_hwmon_temp_celsius{instance=\"192.168.1.128:9100\",chip=\"platform_coretemp_0\"})",
+          "expr": "max(node_hwmon_temp_celsius{job=\"node-exporter\",chip=\"platform_coretemp_0\"})",
           "refId": "A",
           "datasource": {
             "uid": "prometheus",
@@ -3771,7 +3771,7 @@
           "legendFormat": "{{instance}} max core"
         },
         {
-          "expr": "node_thermal_zone_temp{instance=\"192.168.1.128:9100\",type=\"x86_pkg_temp\"}",
+          "expr": "node_thermal_zone_temp{job=\"node-exporter\",type=\"x86_pkg_temp\"}",
           "refId": "B",
           "datasource": {
             "uid": "prometheus",
