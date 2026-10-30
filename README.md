@@ -29,44 +29,67 @@ PAT: stored in SOPS secret (homelab repo, monitoring namespace) + BitWarden entr
 ## Prometheus Data Sources
 - Endpoint (in-cluster): http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
 - External: https://prometheus.homelab.properties (if accessible)
-- All scrape targets confirmed active — see metrics catalog below
+- Catalog below verified against live Prometheus targets (2026-10-29). Always filter on the `job` label shown; it often differs from the app name.
 
-## Metrics Catalog (Key Sources)
-### Media Stack (exportarr — 4m scrape interval)
-- sonarr_episode_total, sonarr_episode_downloaded_total, sonarr_episode_missing_total, sonarr_episode_cutoff_unmet_total
-- sonarr_series_total, sonarr_series_downloaded_total, sonarr_episode_quality_total{quality, weight}
-- radarr_movie_total, radarr_movie_downloaded_total, radarr_movie_missing_total, radarr_movie_cutoff_unmet_total, radarr_movie_filesize_total
-- prowlarr_indexer_total, prowlarr_indexer_{queries,grabs,failed_queries,failed_grabs}_total{indexer}, prowlarr_indexer_average_response_time_ms{indexer}
-- {app}_queue_total{status, download_status, download_state} — for sonarr, radarr, prowlarr
-- {app}_rootfolder_freespace_bytes{path} — for sonarr, radarr
-- {app}_system_status — 1=up, 0=down
+## Metrics Catalog
+Columns: metric prefix, `job` label, scrape interval, dashboard that uses it.
 
-### Downloads
-- sabnzbd_* — SABnzbd via exportarr (namespace: sabnzbd, 4m)
-- qbittorrent_* — qBittorrent exporter (namespace: qbittorrent, 4m)
-- gluetun_* — VPN health for both sabnzbd and qbittorrent gluetun sidecars
+### Media and downloads
+| Metrics | job | Interval | Dashboard |
+|---|---|---|---|
+| `sonarr_*` (exportarr) | `sonarr` | 4m | media-pipeline, homelab-overview |
+| `radarr_*` (exportarr) | `radarr` | 4m | media-pipeline, homelab-overview |
+| `prowlarr_*` (exportarr) | `prowlarr` | 4m | media-pipeline, homelab-overview |
+| `sabnzbd_*`, `gluetun_*` (VPN sidecar) | `sabnzbd` | 4m | download-health, media-pipeline, homelab-overview |
+| `qbittorrent_*`, `gluetun_*` (VPN sidecar) | `qbittorrent` | 4m | download-health, media-pipeline, homelab-overview |
+| `tdarr_*` | `tdarr-exporter` | 1m | homelab-overview only (tdarr-transcoding: no dashboard yet) |
 
-### Infrastructure
-- node_* — node-exporter (K3s node 192.168.1.128 + Synology NAS 192.168.1.20)
-- kube_* — kube-state-metrics (K3s cluster state)
-- container_* — cAdvisor (per-pod resource usage)
-- DCGM/GPU metrics: NOT YET available (pending homelab issue #138)
-- Tdarr transcode metrics: NOT YET available (pending homelab issue #139)
-- Unifi metrics: NOT YET available (pending homelab issue #140)
+Key exportarr series: `{app}_episode_*` / `radarr_movie_*` (total, downloaded, missing, cutoff_unmet), `{app}_queue_total{status,download_status,download_state}`, `{app}_rootfolder_freespace_bytes{path}` (sonarr, radarr), `{app}_system_status` (1=up), `prowlarr_indexer_*{indexer}`.
 
-### DNS
-- pihole_* — Pi-hole exporter (port 9617, PodMonitor, 4m)
+### Compute, GPU, storage
+| Metrics | job | Interval | Dashboard |
+|---|---|---|---|
+| `node_*` (incl. `node_hwmon_*`, `node_nvme_*`, `node_thermal_zone_*`) K3s node | `node-exporter` | 1m | node-health, homelab-overview |
+| `node_*` (incl. `node_hwmon_*`) Synology NAS | `synology-node-exporter` | 1m | node-health, homelab-overview |
+| `DCGM_FI_*` (NVIDIA GPU) | `kube-system-dcgm-exporter` (NOT `dcgm-exporter`) | 30s | gpu-monitoring, node-health |
+| `smartctl_*` (disk SMART) | `prometheus-smartctl-exporter` | 1m | node-health |
+| `longhorn_*` | `longhorn-backend` | 1m | node-health |
+| `kopiur_*` (backup controller) | `kopiur-controller-metrics`, `kopiur-webhook` | 30s | no dashboard yet |
+| `kube_*` (kube-state-metrics) | `kube-state-metrics` | 1m | node-health, download-health, homelab-overview |
+| `container_*` (cAdvisor) | `kubelet` (metrics/cadvisor path) | 10s and 1m targets | node-health, download-health, homelab-overview |
 
-### Availability
-- probe_success — blackbox probes: tdarr, portainer, headlamp, authentik
+### Network, DNS, availability
+| Metrics | job | Interval | Dashboard |
+|---|---|---|---|
+| `unpoller_*` (Unifi) | `unpoller` | 30s | unifi-network |
+| `pihole_*` | `pihole/pihole-prometheus-exporter` (PodMonitor) | 1m | pihole-dns, homelab-overview |
+| `probe_*` (blackbox: portainer, headlamp, authentik, tdarr, goldilocks) | `probe/monitoring/<name>` | 1m | homelab-overview |
+| `gatus_*` (gatus_results_*) | `gatus` | 1m | no dashboard yet |
+| `certmanager_*` | `monitoring/cert-manager` | 1m | no dashboard yet |
 
-## Dashboard Index
-- dashboards/homelab-overview.json — all services, rows per category [WIP: issue #1]
-- dashboards/media-pipeline.json — Sonarr/Radarr/Prowlarr/SABnzbd detail [issue #4]
-- dashboards/node-health.json — K3s node + Synology [issue #5]
-- dashboards/pihole-dns.json — Pi-hole DNS [issue #6]
-- dashboards/tdarr-transcoding.json — Tdarr GPU pipeline [issue #7, blocked on homelab #139]
-- dashboards/download-health.json — VPN + download clients [issue #8]
+### Platform and other
+| Metrics | job | Interval | Dashboard |
+|---|---|---|---|
+| `sense_*` (Sense energy) | `sense-exporter` | 1m | no dashboard yet |
+| `gotk_*` (Flux) | `monitoring/flux` | 1m | no dashboard yet |
+| `loki_*` metrics | `telemetry/loki`, `telemetry/loki-canary` | 15s | no dashboard yet |
+| Loki logs (LogQL, Loki datasource, not Prometheus) | n/a | n/a | k3s-logs |
+| `ALERTS`, `ALERTS_FOR_STATE` | n/a (generated by Prometheus rules) | rule eval | no dashboard yet |
+| `apiserver_*`, `etcd_*`, `coredns_*`, `alertmanager_*`, `prometheus_*`, `grafana_*` | kube-prometheus-stack jobs | 1m | provisioned by kube-prometheus-stack |
+
+## Dashboards
+| File | uid |
+|---|---|
+| dashboards/homelab-overview.json | homelab-overview |
+| dashboards/media-pipeline.json | media-pipeline |
+| dashboards/download-health.json | download-health |
+| dashboards/node-health.json | node-health |
+| dashboards/gpu-monitoring.json | gpu-monitoring |
+| dashboards/unifi-network.json | unifi-network |
+| dashboards/pihole-dns.json | pihole-dns |
+| dashboards/k3s-logs.json | k3s-logs |
+
+Planned: tdarr-transcoding (tdarr_* is live, dashboard not yet merged).
 
 ## Adding a Dashboard
 1. Build in Grafana UI (https://grafana.homelab.properties)
